@@ -1,0 +1,34 @@
+# {{project_name|title}} {% if confluence_url != "" %}[![Bintray](https://img.shields.io/badge/confluence-%23172BF4.svg?style=for-the-badge&logo=confluence&logoColor=white)]({{ confluence_url }}){% endif %}
+
+{{jira_ticket if jira_ticket != ""}}
+
+{{description}}
+
+
+## Setup
+### Project dependencies:
+ * Python {{ python_version }}
+ * [GNU make](https://www.gnu.org/software/make/)
+ * [Virtualenv](https://virtualenv.pypa.io/en/latest/)
+
+Create virtualenv in the project root directory named ".venv"
+
+### Commands
+
+`make install-flit`
+
+`make install-dev`
+
+`make run` or `make test`
+
+
+## Flow
+
+
+
+
+## Current limitations & future improvements
+
+#### Authors:  [{{ author_full_name | title }}](mailto:{{ author_email }})
+
+

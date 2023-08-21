@@ -1,0 +1,61 @@
+[build-system]
+requires = ["flit_core==3.8.0"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "{{ package_name }}"
+authors = [
+    { name = "{{ author_full_name }}", email = "{{ author_email }}" },
+]
+dynamic = ["version"]
+description = "{{ description }}"
+# Add here the production dependencies
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "autoflake",
+    "pytype; platform_system != 'Windows'",
+    "flake8",
+    "Flake8-pyproject",
+    "bandit",
+    "flake8-bugbear",
+    "pre-commit>=2.21.0",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+    "pytest-xdist",
+]
+
+[tool.isort]
+profile = "black"
+line_length = 140
+py_version = {{ python_version.replace('.', "") }}
+order_by_type = false
+skip = [".gitignore", ".dockerignore"]
+extend_skip = [".md", ".json"]
+skip_glob = ["docs/*"]
+
+[tool.flake8]
+max-line-length = 140
+select = ["C", "E", "F", "W", "B", "B9"]
+ignore = ["E203", "E501", "W503", "C812", "E731", "F811"]
+exclude = ["__init__.py"]
+
+[tool.black]
+line-length = 140
+target-version = ['{{ python_version.replace(".", "") }}']
+include = '\.pyi?$'
+
+[tool.bandit]
+skips = ["B311", "B404"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
+
+testpaths = "tests"

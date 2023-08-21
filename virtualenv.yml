@@ -1,0 +1,15 @@
+_venv: &venv
+  when: '{{ virtualenv }}'
+
+python_version:
+  <<: *venv
+  type: str
+  help: 'Python version.'
+  default: '{{ python_version }}'
+
+python_path:
+  <<: *venv
+  help: 'Please provide correct python executable path!
+  Current python version: {{ [sys.version_info.major, sys.version_info.minor] | join(".") }} Chosen version: {{ python_version }}'
+  default: '{{ python_path }}'
+  when: '{{ [sys.version_info.major, sys.version_info.minor] | join(".") != python_version }}'

@@ -1,0 +1,2 @@
+_hooks: &hooks
+  when: '{{ pre_commit_hooks }}'

@@ -1,0 +1,2 @@
+_docker: &docker
+  when: '{{ docker_integration }}'

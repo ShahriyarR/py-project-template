@@ -1,0 +1,73 @@
+---
+!include tasks.yml
+---
+
+_subdirectory: 'root'
+_jinja_extensions:
+    - copier_templates_extensions.TemplateExtensionLoader
+    - extensions/context.py:ContextUpdater
+
+project_name:
+    type: str
+    help: Project name
+    validator: >-
+        {% if not project_name | regex_search('py-[\w+-]*\w') %}Wrong project name.
+        Please follow template 'py-project-name' {% endif %}
+
+package_name:
+    type: str
+    help: Package name
+    default: '{{ project_name.replace("-", "") }}'
+    validator: >-
+        {% if not package_name | regex_search('py[\w+]*\w') %}
+        Wrong package name. Please follow template 'pypackagename'{% endif %}
+
+author_full_name:
+    type: str
+    help: Authors full name
+    validator: >-
+        {% if not author_full_name %}Please fill authors full name{% endif %}
+
+author_email:
+    type: str
+    help: Authors email
+    default: '{{ author_full_name.replace(" ", ".") + "@gmail.com" }}'
+
+description:
+    type: str
+    help: Project description
+    default: ''
+
+version:
+    type: str
+    help: Project version
+    default: '0.0.1'
+
+virtualenv:
+    type: bool
+    help: Do you want to install virtualenv?
+    default: true
+
+---
+!include virtualenv.yml
+---
+
+pre_commit_hooks:
+    type: bool
+    help: Enable pre-commit hooks?
+    default: true
+
+
+---
+!include docker_integration.yml
+---
+
+confluence:
+    type: str
+    help: Project confluence url
+    default: ''
+
+jira_ticket:
+    type: str
+    help: Project jira ticket
+    default: ''

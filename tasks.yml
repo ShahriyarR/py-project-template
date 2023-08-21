@@ -7,4 +7,3 @@ _tasks:
 ##Pre-commit hooks
 #  - '{% if pre_commit_hooks %} git init {% endif %}'
 #  - '{% if pre_commit_hooks %} make enable-pre-commit-hooks {% endif %}'
-  - "{{ python_path }}" -m tasks

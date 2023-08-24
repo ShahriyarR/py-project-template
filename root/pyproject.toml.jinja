@@ -50,7 +50,7 @@ exclude = ["__init__.py"]
 
 [tool.black]
 line-length = 140
-target-version = ['{{ python_version.replace(".", "") }}']
+target-version = ['py{{ python_version.replace(".", "") }}']
 include = '\.pyi?$'
 
 [tool.bandit]

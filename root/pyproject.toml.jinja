@@ -22,8 +22,10 @@ dev = [
     "Flake8-pyproject",
     "bandit",
     "flake8-bugbear",
-    "pre-commit>=2.21.0",
-    "safety>=2.3.5",
+    "flake8-cognitive-complexity",
+    "pre-commit",
+    "safety",
+    "pip-audit",
 ]
 test = [
     "pytest",
@@ -57,6 +59,16 @@ skips = ["B311", "B404"]
 [tool.pytest.ini_options]
 pythonpath = [
   "src"
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration relatively slow (deselect with '-m \"not integration\"')",
+    "serial",
+]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "-ra",
 ]
 
 testpaths = "tests"

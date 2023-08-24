@@ -1,9 +1,9 @@
 _tasks:
 ##Virtualenv
-#  - '{% if virtualenv %} "{{ python_path }}" -m pip install virtualenv {% endif %}'
-#  - '{% if virtualenv %} "{{ python_path }}" -m virtualenv --python={{ python_version }} .venv {% endif %}'
-#  - '{% if virtualenv %} make install-flit {% endif %}'
-#  - '{% if virtualenv %} make install-dev {% endif %}'
+  - '{% if virtualenv %} "{{ python_path }}" -m pip install virtualenv {% endif %}'
+  - '{% if virtualenv %} "{{ python_path }}" -m virtualenv --python={{ python_version }} .venv {% endif %}'
+  - '{% if virtualenv %} make install-flit {% endif %}'
+  - '{% if virtualenv %} make install-dev {% endif %}'
 ##Pre-commit hooks
-#  - '{% if pre_commit_hooks %} git init {% endif %}'
-#  - '{% if pre_commit_hooks %} make enable-pre-commit-hooks {% endif %}'
+  - '{% if pre_commit_hooks %} git init {% endif %}'
+  - '{% if pre_commit_hooks %} make enable-pre-commit-hooks {% endif %}'

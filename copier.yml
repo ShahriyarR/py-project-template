@@ -61,13 +61,3 @@ pre_commit_hooks:
 ---
 !include docker_integration.yml
 ---
-
-confluence:
-    type: str
-    help: Project confluence url
-    default: ''
-
-jira_ticket:
-    type: str
-    help: Project jira ticket
-    default: ''

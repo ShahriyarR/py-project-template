@@ -124,47 +124,69 @@ Let's see what we have?
 
 * First go to the new created project directory:
 
-`cd ~/REPOS/others/py-remove-me`
+```console
+cd ~/REPOS/others/py-remove-me
+```
 
 * Install project in production mode:
 
-`make install`
+```console
+make install
+```
 
 * Install project in development mode, especially useful
 
-`make install-dev`
+```console
+make install-dev
+```
 
 * Format, sort the imports and also check the style
 
-`make format`
+```console
+make format
+```
 
 * Run linter for final check
 
-`make lint`
+```console
+make lint
+```
 
 * Run tests all non-slow and non-integrated tests
 
-`make test`
+```console
+make test
+```
 
 * Run slow tests
 
-`make test-slow`
+```console
+make test-slow
+```
 
 * Run integration tests
 
-`make test-integration`
+```console
+make test-integration
+```
 
 * Run test coverage
 
-`make test-cov`
+```console
+make test-cov
+```
 
 * Run type check
 
-`make type-check`
+```console
+make type-check
+```
 
 * Run security check
 
-`make secure`
+```console
+make secure
+```
 
 
 # TODO:

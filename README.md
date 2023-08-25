@@ -8,10 +8,13 @@ Python 3.8+
 
 First install [copier](https://pypi.org/project/copier/) and [copier_templates_extensions](https://pypi.org/project/copier-templates-extensions/)
 
-`pip3 install copier`
+```console
+pip3 install copier
+```
 
-`pip3 install copier-templates-extensions`
-
+```console
+pip3 install copier-templates-extensions
+```
 Then of course you need to have [GNU make](https://www.gnu.org/software/make/) installed on your machine.
 
 ## How to create the project?
@@ -19,17 +22,38 @@ Then of course you need to have [GNU make](https://www.gnu.org/software/make/) i
 * Go to the root folder where you are going to create the Python project. For eg, for me it is called `~/REPOS/others/`
 `cd ~/REPOS/others/`
 
-* Run copier as:
+* Run copier as (if you prefer clone over SSH):
 
-`copier copy --trust git@github.com:ShahriyarR/py-project-template.git py-remove-me`
+```console
+copier copy --trust git@github.com:ShahriyarR/py-project-template.git py-remove-me
+```
 
 or
 
-`python3 -m copier copy --trust git@github.com:ShahriyarR/py-project-template.git py-remove-me`
+```console
+python3 -m copier copy --trust git@github.com:ShahriyarR/py-project-template.git py-remove-me
+```
+
+or
+
+* Run copier as (if you prefer clone over HTTPS):
+
+```console
+copier copy --trust https://github.com/ShahriyarR/py-project-template.git py-remove-me
+```
+
+or
+
+```console
+python3 -m copier copy --trust https://github.com/ShahriyarR/py-project-template.git py-remove-me
+```
+
 
 * Answer the questions.
 
-```
+> **_NOTE:_**  Please, note that the uppercase options are defaults for Yes/No type prompts.
+
+```console
 🎤 Project name
    py-remove-me
 🎤 Package name
@@ -43,13 +67,14 @@ or
 🎤 Project version
    0.0.1
 🎤 Do you want to install virtualenv?
-   Yesn)
+   Y/n)
 🎤 Python version.
    3.10
 🎤 Enable pre-commit hooks?
-   Yesn)
+   Y/n)
 🎤 Enable Docker?
-   Yesn)
+   Y/n)
+
 
 Copying from template version 0.0.0.post11.dev0+15688cd
     create  .
@@ -99,47 +124,69 @@ Let's see what we have?
 
 * First go to the new created project directory:
 
-`cd ~/REPOS/others/py-remove-me`
+```console
+cd ~/REPOS/others/py-remove-me
+```
 
 * Install project in production mode:
 
-`make install`
+```console
+make install
+```
 
 * Install project in development mode, especially useful
 
-`make install-dev`
+```console
+make install-dev
+```
 
 * Format, sort the imports and also check the style
 
-`make format`
+```console
+make format
+```
 
 * Run linter for final check
 
-`make lint`
+```console
+make lint
+```
 
 * Run tests all non-slow and non-integrated tests
 
-`make test`
+```console
+make test
+```
 
 * Run slow tests
 
-`make test-slow`
+```console
+make test-slow
+```
 
 * Run integration tests
 
-`make test-integration`
+```console
+make test-integration
+```
 
 * Run test coverage
 
-`make test-cov`
+```console
+make test-cov
+```
 
 * Run type check
 
-`make type-check`
+```console
+make type-check
+```
 
 * Run security check
 
-`make secure`
+```console
+make secure
+```
 
 
 # TODO:

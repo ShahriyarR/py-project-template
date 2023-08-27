@@ -194,4 +194,3 @@ make secure
 * Add GitHub workflows/CI runs.
 * Update Makefile for adding separate test runs. test-slow, test-integration etc.
 * Respectively add pytest marks.
-* Issue and PR templates

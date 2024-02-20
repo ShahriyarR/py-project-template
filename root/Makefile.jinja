@@ -8,65 +8,70 @@ endif
 
 SETTINGS_FILENAME = pyproject.toml
 
-PHONY = help install install-dev build format lint type-check secure test install-flit enable-pre-commit-hooks run
+PHONY = help install install-dev build format lint type-check secure test test-slow test-integration install-flit enable-pre-commit-hooks run
 
 help:
 	@echo "--------------- HELP ---------------"
-	@echo "To install the project -> make install"
-	@echo "To install the project using symlinks (for development) -> make install-dev"
-	@echo "To build the wheel package -> make build"
-	@echo "To test the project -> make test"
-	@echo "To test with coverage [all tests] -> make test-cov"
-	@echo "To format code -> make format"
-	@echo "To check linter -> make lint"
-	@echo "To run type checker -> make type-check"
-	@echo "To run all security related commands -> make secure"
+	@egrep "^# target:" [Mm]akefile | sed -e 's/target://'
 	@echo "------------------------------------"
 
+# target: To install the project -> make install
 install:
 	${PYTHON} -m flit install --env --deps=production
 
+# target: To install the project using symlinks (for development) -> make install-dev
 install-dev:
 	${PYTHON} -m flit install -s --env --deps=develop --symlink
 
+# target: To install flit -> make install-flit
 install-flit:
 	${PYTHON} -m pip install flit==3.8.0
 
+# target: To enable pre-commit hooks -> make enable-pre-commit-hooks
 enable-pre-commit-hooks:
 	${PYTHON} -m pre_commit install
 
+# target: To build the wheel package -> make build
 build:
 	${PYTHON} -m flit build --format wheel
 	${PYTHON} -m pip install dist/*.whl
 	${PYTHON} -c 'import {{ package_name }}; print({{ package_name }}.__version__)'
 
+# target: To format code -> make format
 format:
 	${PYTHON} -m isort src tests --force-single-line-imports --settings-file ${SETTINGS_FILENAME}
 	${PYTHON} -m autoflake --remove-all-unused-imports --recursive --remove-unused-variables --in-place src --exclude=__init__.py
 	${PYTHON} -m black src tests --config ${SETTINGS_FILENAME}
 	${PYTHON} -m isort src tests --settings-file ${SETTINGS_FILENAME}
 
+# target: To check linter -> make lint
 lint:
 	${PYTHON} -m flake8 --toml-config ${SETTINGS_FILENAME} --max-complexity 5 --max-cognitive-complexity=5 src
 	${PYTHON} -m black src tests --check --diff --config ${SETTINGS_FILENAME}
 	${PYTHON} -m isort src tests --check --diff --settings-file ${SETTINGS_FILENAME}
 
+# target: To run type checker -> make type-check
 type-check:
 	@$(TYPE_CHECK_COMMAND)
 
+# target: To run all security related commands -> make secure
 secure:
 	${PYTHON} -m bandit -r src --config ${SETTINGS_FILENAME}
 	${PYTHON} -m safety check
 	pip-audit .
 
+# target: To test the project -> make test
 test:
 	${PYTHON} -m pytest -svvv -m "not slow and not integration" tests
 
+# target: To test running only slow tests -> make test-slow
 test-slow:
 	${PYTHON} -m pytest -svvv -m "slow" tests
 
+# target: To test running only integration tests -> make test-integration
 test-integration:
 	${PYTHON} -m pytest -svvv -m "integration" tests
 
+# target: To run the project -> make run
 run:
 	${PYTHON} -m src.{{ package_name }}.main
